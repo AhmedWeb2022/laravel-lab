@@ -3,7 +3,7 @@
 @section('title') Index @endsection
 @section('content')
 <div class="text-center">
-  <a href="{{route('posts.create')}}" class="mt-4 btn btn-success">Create Post</a>
+  <a href="{{route('posts.create')}}" class="mt-4 btn "><x-button type='success' action='Create Post'></x-button></a>
 </div>
 <table class="table mt-4">
   <thead>
@@ -23,10 +23,10 @@
         <td>{{$post['posted_by']}}</td>
         <td>{{$post['creation_date']}}</td>
         <td>
-            <a href="{{route('posts.show', $post['id'])}}" class="btn btn-info">View</a>
+            <a href="{{route('posts.show', $post['id'])}}" class="btn "><x-button type='primary' action='View'></x-button></a>
             {{-- <a href="{{route('posts.show', ['post' =>$post['id']])}}" class="btn btn-info">View</a> --}}
-            <a href="#" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn-danger">Delete</a>
+            <a href="#" class="btn "><x-button type='secondary' action='Edit'></x-button></a>
+            <a href="#" class="btn "><x-button type='danger' action='Delete'></x-button></a>
         </td>
       </tr>
     @endforeach
