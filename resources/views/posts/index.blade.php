@@ -27,12 +27,12 @@
             {{-- <a href="{{route('posts.show', ['post' =>$post['id']])}}" class="btn btn-info">View</a> --}}
             <a href="{{route('posts.edit', $post['id'])}}" class="btn "><x-button type='secondary' action='Edit'></x-button></a>
             {{-- <x-button type='danger'  action='Delete' dataTogle='modal' dataTarget='#exampleModal{{$post['id']}}'></x-button> --}}
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$post['id']}}">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Delete
             </button>
           </td>
           <td>
-            <div class="modal  fade " id="exampleModal{{$post['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal  fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog  ">
                 <div class="modal-content bg-danger">
                   <div class="modal-header">

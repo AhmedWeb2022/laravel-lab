@@ -11,7 +11,7 @@ class postsController extends Controller
 {
    
     public function index(){
-       
+    
         $allPosts = Post::paginate(25);
         return view('posts.index', [
           'posts' => $allPosts
@@ -19,8 +19,6 @@ class postsController extends Controller
     }
     public function show($postId){
        $post = Post::find($postId);
-       
-
         return  view('posts.show',[
             'post' => $post
         ]);

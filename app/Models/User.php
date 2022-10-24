@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function comment()
+    public function comments()
     {
         return $this->morphOne(comment::class, 'commentable');
     }

@@ -10,11 +10,10 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'commentable_id',
-        'commentable_type',
         'content',
     ];
-public function commentable () {
-    return $this->morphto();
-}
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

@@ -16,8 +16,8 @@ class Post extends Model
     public function user (){
         return $this->belongsTo(User::class);
     }
-    public function comment()
+    public function comments()
     {
-        return $this->morphMany(comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

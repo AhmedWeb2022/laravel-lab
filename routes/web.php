@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\commentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\postsController;
 
@@ -22,3 +23,8 @@ Route::post('posts', [postsController::class, 'store'])->name('posts.store');
 Route::put('posts/{post}', [postsController::class, 'update'])->name('posts.update');
 Route::delete('posts/{post}', [postsController::class, 'destroy'])->name('posts.destroy');
 // Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+
+
+// Comments Routes
+Route::get('/posts/{post}/comments', [commentsController::class, 'index'])->name('posts.comment');
+Route::post('/posts/{post}/comments', [commentsController::class, 'store'])->name('posts.comment.store');
