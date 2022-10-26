@@ -10,6 +10,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
+      <th scope="col">Slug</th>
       <th scope="col">Posted By</th>
       <th scope="col">Created At</th>
       <th scope="col">Actions</th>
@@ -20,6 +21,7 @@
       <tr>
         <td>{{$post->id}}</th>
         <td>{{$post->title}}</td>
+        <td>{{$post->slug}}</td>
         <td>{{$post->user->name}}</td>
         <td>{{$post->created_at->format('Y-m-d')}}</td>
         <td>
@@ -27,12 +29,12 @@
             {{-- <a href="{{route('posts.show', ['post' =>$post['id']])}}" class="btn btn-info">View</a> --}}
             <a href="{{route('posts.edit', $post['id'])}}" class="btn "><x-button type='secondary' action='Edit'></x-button></a>
             {{-- <x-button type='danger'  action='Delete' dataTogle='modal' dataTarget='#exampleModal{{$post['id']}}'></x-button> --}}
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$post['id']}}">
               Delete
             </button>
           </td>
           <td>
-            <div class="modal  fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal  fade " id="exampleModal{{$post['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog  ">
                 <div class="modal-content bg-danger">
                   <div class="modal-header">

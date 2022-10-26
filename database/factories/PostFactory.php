@@ -18,7 +18,8 @@ class PostFactory extends Factory
     {
        $name = $this->faker->text(30);
         return [
-            'title'=> Str::slug($name),
+            'title'=> $name,
+            'slug' => str::slug($name),
             'user_id'=>rand(1,100),
             'description'=>$this->faker->text(100)
         ];

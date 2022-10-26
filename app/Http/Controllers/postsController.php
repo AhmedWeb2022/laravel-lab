@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Str;
 
 class postsController extends Controller
 {
@@ -30,26 +32,27 @@ class postsController extends Controller
             'users' => $allUsers
         ]);
     }
-    public function store(){
+    public function store(PostRequest $request){
         $data = request()->all();
         // dd($data);
         Post::create([
             'title' => $data['title'],
             'description' =>$data['description'],
-            'user_id' => $data['posted-by']
+            'user_id' => $data['posted-by'],
+            'slug' => str::slug($data['title'])
         ]);
        return redirect()->route('posts.index');
     }
-    public function edit($postId) {
+    public function edit($postId ) {
         $post = Post::find($postId);
         return view('posts.edit',[
             'post' => $post
         ]);
     }
-    public function update( $postId) {
+    public function update(PostRequest $request,  $postId) {
         $data = request()->all();
         // dd($x->all(),$postId);
-        Post::find($postId)->update(['title'=>$data['title'],'description' =>$data['description']]);
+        Post::find($postId)->update(['title'=>$data['title'],'description' =>$data['description'],'slug' => str::slug($data['title'])]);
         return redirect()->route('posts.index');
     }
     public function destroy($postId) {
