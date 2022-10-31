@@ -11,8 +11,9 @@
         </ul>
     </div>
 @endif --}}
-        <form method="POST" action="{{route('posts.store')}}">
+        <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
           @csrf
+          {{csrf_field()}}
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Title</label>
               <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -28,7 +29,10 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
               </div>
-
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Choose Your Image</label>
+                <input class="form-control" name="image" type="file" id="formFile">
+              </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Post Creator</label>
                 <select name="posted-by" @error('posted-by') is-invalid @enderror class="form-control">

@@ -27,6 +27,9 @@ class User extends Authenticatable
     {
         return $this->morphOne(comment::class, 'commentable');
     }
+    public function post (){
+        return $this->hasMany(Post::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

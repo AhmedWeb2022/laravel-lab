@@ -21,7 +21,10 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
               </div>
-
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Choose Your Image</label>
+                <input class="form-control" name="image" type="file" id="formFile">
+              </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Post Creator</label>
                 <select name="posted-by" class="form-control @error('posted-by') is-invalid @enderror">

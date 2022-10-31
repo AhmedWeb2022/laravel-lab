@@ -14,6 +14,7 @@ class Post extends Model
         'description',
         'user_id',
         'slug',
+        'image',
     ];
     public function sluggable(): array
     {

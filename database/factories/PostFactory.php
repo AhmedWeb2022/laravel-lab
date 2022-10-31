@@ -20,6 +20,7 @@ class PostFactory extends Factory
         return [
             'title'=> $name,
             'slug' => str::slug($name),
+            'image'=>$name,
             'user_id'=>rand(1,100),
             'description'=>$this->faker->text(100)
         ];

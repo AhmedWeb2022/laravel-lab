@@ -8,13 +8,14 @@ use App\Models\User;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
+use App\Jobs\PruneOldPostsJob;
 
 class postsController extends Controller
 {
    
     public function index(){
-    
-        $allPosts = Post::paginate(25);
+    PruneOldPostsJob::dispatch();
+        $allPosts = Post::with('User')->paginate(2);
         return view('posts.index', [
           'posts' => $allPosts
         ]);
@@ -33,14 +34,27 @@ class postsController extends Controller
         ]);
     }
     public function store(PostRequest $request){
-        $data = request()->all();
+        $data = new Post();
         // dd($data);
-        Post::create([
-            'title' => $data['title'],
-            'description' =>$data['description'],
-            'user_id' => $data['posted-by'],
-            'slug' => str::slug($data['title'])
-        ]);
+        if($request->hasfile("image")){
+            $file = $request->file('image');
+            $extention=$file->getClientOriginalExtension();
+            $file_name= time(). ".". $extention;
+            $file->move('posts/image',$file_name);
+            $data['image']=$file_name;
+            Post::create([
+                'title' => $data['title'],
+                'description' =>$data['description'],
+                'user_id' => $data['posted-by'],
+                'slug' => str::slug($data['title']),
+                'image'=> $data['image']
+            ]);
+        }else {
+            return $request;
+            $data['image']='';
+        }
+        $data->save();
+     
        return redirect()->route('posts.index');
     }
     public function edit($postId ) {
